@@ -26,16 +26,10 @@ function _linekind(line) {
 }
 
 function _line2link(line) {
-	const fields = line.split(" ");
-	const href = fields[1];
-	const limit = fields.length;
-	var text = fields[2];
-
-	for (var i = 3; i < limit; i++) {
-		var field = fields[i];
-		text += " " + field;
-	}
-
+	const re = /^=>\s?(.*?)\s+(.*)\s*?$/;
+	const matches = line.match(re);
+	const text = matches[2];
+	const href = matches[1];
 	return `[${text}](${href})`;
 }
 
